@@ -17,8 +17,11 @@
 '''
 
 import time
+from firebase import firebase
 
 from DFRobot_RaspberryPi_A02YYUW import DFRobot_A02_Distance as Board
+
+firebase = firebase.FirebaseApplication('https://road-34dac.firebaseio.com', None)
 
 board = Board()
 

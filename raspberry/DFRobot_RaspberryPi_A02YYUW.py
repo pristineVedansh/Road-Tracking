@@ -65,23 +65,21 @@ class DFRobot_A02_Distance:
   def measure(self):
     data = []
     i = 0
-    while self.ser.in_waiting == 0:
+    while self.ser.inWaiting() == 0:
       i += 1
       time.sleep(0.05)
       if i > 4:
         break
     i = 0
-    while self.ser.in_waiting > 0:
+    while self.ser.inWaiting() > 0:
       data.append(ord(self.ser.read()))
       i += 1
       if data[0] != 0xff:
         i = 0
         data = []
-	if i == 4:
-	        break
       if i == 4:
-	break
-    self.ser.read(self.ser.in_waiting)
+        break
+    self.ser.read(self.ser.inWaiting())
     if i == 4:
       sum = self.check_sum(data)
       if sum != data[3]:
